@@ -1,0 +1,13 @@
+.cardList {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+    align-items: center;
+}
+
+@media (max-width: 768px) {
+    .cardList {
+        justify-content: center;
+    }
+}

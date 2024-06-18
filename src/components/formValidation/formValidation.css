@@ -1,0 +1,11 @@
+.input-error {
+    border: .1rem solid #DC3545 !important;
+}
+
+.input-sucess {
+    border: 1rem solid #096e21 !important;
+}
+
+.error-message {
+    color: #DC3545 !important;
+}

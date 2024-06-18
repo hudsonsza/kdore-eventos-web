@@ -1,0 +1,113 @@
+.card {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    flex: 1 !important;
+    min-width: 24rem !important;
+    max-width: 24rem !important;
+    padding: 0 !important;
+    border: .1rem solid rgba(117, 118, 121, .2);
+    border-radius: 1rem !important;
+    transition: all .2s ease-in-out;
+
+    &:hover {
+        box-shadow: 0 .5rem 1.5rem var(--color-shadow);
+        transform: scale(1.02);
+        cursor: pointer;
+    }
+
+    & img {
+        object-fit: cover;
+        height: 30rem !important;
+        border-radius: 1rem 1rem 0 0 !important;
+    }
+}
+
+.eventClosed {
+    width: 100%;
+    height: 100%;
+    background-color: rgba(105, 105, 110, 0.363);
+    border-radius: 1rem;
+    position: absolute;
+    z-index: 10;
+
+    & .eventClosed-badge {
+        display: inline-block;
+        font-size: .8rem;
+        font-weight: bold;
+        background-color: #FFC107;
+        color: var(--color-title);
+        border-radius: 1rem;
+        padding: .4rem;
+
+        position: absolute;
+        top: -.8rem;
+        right: 0;
+
+    }
+}
+
+.cardHeader {
+    display: flex;
+    align-items: center;
+    gap: .2rem;
+
+    font-size: .75rem; /*12px*/
+    color: var(--color-primary);
+    font-weight: bold;
+    text-transform: uppercase;
+    padding: .5rem .8rem;
+
+    & span {
+        font-size: 1.1rem;
+        font-weight: bold;
+    }
+}
+
+.cardBody {
+    padding: 0 .8rem 1rem;
+
+    & .cardTitle {
+        color: var(--color-title);
+        font-size: 1rem; /*16px*/
+    }
+
+    & .cardText {
+        color: var(--color-secondary);
+        font-size: .75rem; /*12px*/
+        margin: 0;
+    }
+}
+
+
+/* /my-events */
+.container-icons {
+    display: flex;
+    justify-content: space-around;
+    padding-bottom: 1rem;
+    z-index: 20;
+}
+
+.icon-eye, .icon-edit, .icon-trash {
+    font-size: 1.4rem;
+    cursor: pointer;
+    transition: all .2s ease-in-out;
+
+    &:hover {
+        transform: scale(1.1);
+        font-weight: bolder;
+        filter: drop-shadow(0 0 1rem var(--color-secondary));
+    }
+}
+
+.icon-eye {
+    color: #FFC107;
+}
+
+.icon-edit {
+    color: var(--color-primary);
+}
+
+.icon-trash {
+    color: #f00;
+}

@@ -1,0 +1,43 @@
+.Toastify__toast--info {
+    background: #007BFF !important;
+    color: #fff;
+}
+
+.Toastify__toast--success {
+    background: #096e21 !important;
+    color: #fff;
+}
+
+.Toastify__toast--warning {
+    background: #FFC107 !important;
+    color: #111111;
+}
+
+.Toastify__toast--error {
+    background: #DC3545 !important;
+    color: #fff;
+  }
+  
+
+  /* Barra */
+  .Toastify__progress-bar {
+    background: rgba(255, 255, 255, 0.7);
+  }
+
+
+/* Estilizando os ícones */
+.Toastify__toast-icon > svg {
+    width: 24px !important;
+    height: 24px !important;
+  }
+  
+  .Toastify__toast--info .Toastify__toast-icon > svg, 
+  .Toastify__toast--success .Toastify__toast-icon > svg, 
+  .Toastify__toast--error .Toastify__toast-icon > svg {
+    fill: #fff;
+  }
+  
+  .Toastify__toast--warning .Toastify__toast-icon > svg {
+    fill: #000;
+  }
+  

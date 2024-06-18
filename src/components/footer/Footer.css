@@ -1,0 +1,10 @@
+.footer-container {
+    width: 100%;
+    text-align: center;
+
+    p {
+        padding: 30px 0 15px 0;
+        color: #17660e;
+        font-size: 14px;
+    }
+}

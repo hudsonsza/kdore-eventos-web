@@ -1,0 +1,58 @@
+
+form label {
+    color: #17660e;
+}
+
+.navbar {
+
+    border: 1px solid var(--color-shadow) !important;
+}
+
+nav {
+    & .labelSearch {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: .5rem;
+    }
+
+    & .icon-search {
+        display: inline-block;
+        font-size: 1.4rem;
+    }
+}
+
+.buttons{
+    z-index: 10;
+    position: relative;
+}
+
+.nav-link{
+    font-weight: bold;
+}
+
+.dropdown-item:hover {
+    color: var(--color-light) !important;
+    background: var(--color-primary) !important;
+}
+
+.dropdown-item:active {
+    color: var(--color-light) !important;
+    background: var(--color-primary) !important;
+}
+
+form label {
+    color: var(--color-primary);
+}
+
+.navbar {
+    border: 1px solid var(--color-shadow) !important;
+}
+
+@media (max-width: 749px) {
+    nav {
+        & .labelSearch {
+            margin-bottom: .5rem !important;
+        }
+    }
+}

@@ -1,0 +1,171 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
+* {
+    font-family: "Roboto", sans-serif;
+}
+
+:root {
+    --bg-black: #000;
+    --bg-light: #F3FAFF;
+    --bg-background: #0F2634;
+    --color-primary: #17660e;
+    --color-title: #191F28;
+    --color-light: #fff;
+    --color-secondary: #757679;
+    --color-shadow: #BDC2C9;
+    --color-text:#757679;
+    --color-title2: #464646;
+    /*max-width: 1280px;*/
+    margin: 0 auto;
+   /* padding: 2rem;*/
+    height: 100%;
+    width: 100%;
+}
+
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    width: 100%;
+}
+
+.app-container {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+main {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    padding: 60px;
+    background-color: white;
+}
+
+main section {
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+h1.titulo {
+    color: #17660e;
+    font-weight: bold;
+    margin: 30px 0 20px 0;
+}
+
+/* Aplicado na página de info-event */
+h1 {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    color: var(--color-primary) !important;
+    font-size: 1.4rem !important;
+    text-transform: uppercase;
+    font-weight: bold !important;
+    font-family: 'roboto';
+    margin-bottom: 2rem;
+
+    & span {
+        color: var(--color-secondary);
+        cursor: pointer;
+    }
+}
+
+/* Padronização de inputs, labels nos forms */
+form, .modal {
+    label {
+        color: var(--color-title);
+        font-size: 1rem;
+
+        & svg {
+            color: var(--color-primary);
+        }
+    }
+
+    input, select, textarea {
+        color: var(--color-secondary) !important;
+        transition: all .5s ease-in-out;
+
+        &:focus {
+            color: var(--color-primary) !important;
+            box-shadow: none !important;
+            font-weight: 500;
+            border: .12rem solid var(--color-primary);
+        }
+    }
+}
+
+/* events busca */
+div.searchByName {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    color: var(--color-title);
+    font-size: 1.6rem;
+    margin: 0 auto 2.3rem auto;
+    gap: .5rem;
+
+    label {
+        display: flex;
+        align-items: center;
+        flex: 1;
+        min-width: 15rem;
+        gap: .4rem;
+
+        span.seeEventsFinished {
+            font-size: 1.2rem;
+            color: var(--color-primary);
+
+        }
+
+        & [type='checkbox'] {
+            display: inline-block;
+            accent-color: var(--color-secondary);
+            width: 2rem;
+        }
+    }
+
+    input {
+        color: var(--color-secondary) !important;
+        transition: all .5s ease-in-out;
+
+        &:focus {
+            color: var(--color-primary) !important;
+            box-shadow: none !important;
+            font-weight: 500;
+            border: .12rem solid var(--color-primary);
+        }
+    }
+
+    & svg {
+        color: var(--color-primary);
+    }
+
+}
+
+a {
+    color: #17660e !important;
+    text-transform: uppercase;
+}
+
+.btn {
+    text-transform: uppercase;
+}
+
+
+@media (max-width: 768px) {
+    main {
+        padding: 30px 20px;
+    }
+    h1.titulo {
+        color: #17660e;
+        font-weight: bold;
+        margin: 0 0 20px 0;
+        padding: 0;
+    }
+}
+

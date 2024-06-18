@@ -1,0 +1,26 @@
+.not-found-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    height: 60vh;
+
+    h1, h2, p {
+        color: #0097ff;
+    }
+
+    h1 {
+        font-weight: bold !important;
+        font-size: 128px !important;
+    }
+
+    h2 {
+        font-weight: bold;
+        font-size: 40px;
+    }
+
+    p {
+        font-size: 20px;
+    }
+}

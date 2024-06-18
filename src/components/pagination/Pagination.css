@@ -1,0 +1,19 @@
+button.btnPagination {
+    background-color: transparent;
+    border: 0;
+    font-size: 1.4rem;
+    color: var(--color-secondary);
+    font-weight: 900;
+    transition: all .2s ease-in-out;
+
+    &:hover {
+        color: var(--color-primary);
+    }
+}
+
+span.currentPage {
+    background-color: var(--color-primary);
+    color: var(--color-light);
+    border-radius: .3rem;
+    padding: .3rem;
+}
