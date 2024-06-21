@@ -1,0 +1,74 @@
+name: Continuous Deployment (CD)
+on:
+  push:
+    branches:
+      - main
+      - develop
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    env:
+      NODE_OPTIONS: "--max_old_space_size=4096"
+    steps:
+      - uses: actions/checkout@v3
+      - name: Configure Environments
+        env:
+          SSH_PRIVATE_KEY_DEVELOP: ${{secrets.SSH_PRIVATE_KEY_DEVELOP}}
+          SSH_HOST_DEVELOP: ${{secrets.SSH_HOST_DEVELOP}}
+          SSH_USER_DEVELOP: ${{secrets.SSH_USER_DEVELOP}}
+          SSH_PORT_DEVELOP: ${{secrets.SSH_PORT_DEVELOP}}
+          SSH_PRIVATE_KEY_PRODUCTION: ${{secrets.SSH_PRIVATE_KEY_PRODUCTION}}
+          SSH_HOST_PRODUCTION: ${{secrets.SSH_HOST_PRODUCTION}}
+          SSH_USER_PRODUCTION: ${{secrets.SSH_USER_PRODUCTION}}
+          SSH_PORT_PRODUCTION: ${{secrets.SSH_PORT_PRODUCTION}}
+        shell: bash
+        run: |
+          echo "Configure Base envs"
+          echo "APP_NAME=kdore-eventos-web" >> $GITHUB_ENV
+
+          echo "Configure SSH"
+          if [ ${{ github.ref }} == "refs/heads/main" ]; then
+            echo "is MAIN branch"
+
+            echo "$SSH_PRIVATE_KEY_PRODUCTION" > ../private.key
+            sudo chmod 600 ../private.key
+
+            echo "SSH_HOST=$SSH_HOST_PRODUCTION" >> $GITHUB_ENV
+            echo "SSH_USER=$SSH_USER_PRODUCTION" >> $GITHUB_ENV
+            echo "SSH_PORT=$SSH_PORT_PRODUCTION" >> $GITHUB_ENV
+
+
+          elif [ ${{ github.ref }} == "refs/heads/develop" ]; then
+            echo "is DEVELOP branch"
+
+            echo "$SSH_PRIVATE_KEY_DEVELOP" > ../private.key
+            sudo chmod 600 ../private.key
+
+            echo "SSH_HOST=$SSH_HOST_DEVELOP" >> $GITHUB_ENV
+            echo "SSH_USER=$SSH_USER_DEVELOP" >> $GITHUB_ENV
+            echo "SSH_PORT=$SSH_PORT_DEVELOP" >> $GITHUB_ENV
+          else
+            echo "is not implemented"
+            exit 1
+          fi
+      - name: Compress
+        run: |
+          cd ../ # I added this
+          rm -rf ${{ env.APP_NAME }}.zip
+          zip -r ${{ env.APP_NAME }}.zip ${{ env.APP_NAME }} -x ".git/*" ".github/*"
+      - name: Send file
+        shell: bash
+        run: |
+            scp -o StrictHostKeyChecking=no -P ${{ env.SSH_PORT }} -i ../private.key ../${{ env.APP_NAME }}.zip ${{ env.SSH_USER }}@${{ env.SSH_HOST }}:/data/deploy/
+      - name: Send script for deploy
+        shell: bash
+        run: |
+            ssh -o StrictHostKeyChecking=no -p ${{ env.SSH_PORT }} -i ../private.key ${{ env.SSH_USER }}@${{ env.SSH_HOST }} \
+              -C "rm -f /data/deploy-${{ env.APP_NAME }}.sh"
+
+            scp -o StrictHostKeyChecking=no -P ${{ env.SSH_PORT }} -i ../private.key ./.github/scripts/deploy.sh ${{ env.SSH_USER }}@${{ env.SSH_HOST }}:/data/deploy-${{ env.APP_NAME }}.sh
+      - name: Deploy
+        shell: bash
+        run: |
+            ssh -o StrictHostKeyChecking=no -p ${{ env.SSH_PORT }} -i ../private.key ${{ env.SSH_USER }}@${{ env.SSH_HOST }} \
+              -C "chmod +x /data/deploy-${{ env.APP_NAME }}.sh && /data/deploy-${{ env.APP_NAME }}.sh"
